@@ -1,0 +1,73 @@
+/** theme */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #searchbar {
+    width: 540px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #searchbar {
+    width: 760px;
+  }
+}
+@media (min-width: 1200px){
+  #searchbar {
+    width: 960px;
+  }
+}
+
+.panel .btn i,.btn span{
+ color:#666666;
+}
+.panel .panel-heading {
+ background-color:#ffffff;
+ font-weight:700;
+ font-size:16px;
+ color:#262626;
+ border-color:#ffffff;
+}
+.panel .panel-heading a {
+ font-weight:400;
+ font-size:11px;
+}
+.panel .panel-default {
+ border-color:#cccccc;
+}
+.panel .panel-thumbnail {
+ padding:0;
+}
+.panel .img-circle {
+ width:50px;
+ height:50px;
+}
+
+.well {border-radius:1px;box-shadow:0 0 0;}
+.well,.panel {border-color:#d2d2d2;box-shadow:0 1px 0 #cfcfcf;border-radius:3px;}
+
+h3,h4,h5 { 
+ border:0 solid #efefef; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+}
+
+/** layout */
+#main {padding-top:120px}
+#alertbar { 
+	margin-top:50px;
+	position:fixed;
+ 	width:100%;
+ 	z-index:1020;
+ }
+ .semi {
+   	background-color: rgba(242, 222, 222, 0.4);
+ }
+
+/** grids */
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    height: 300px;
+}
+.imageSize {
+	max-width : 300px;
+	max-height: 300px
+}

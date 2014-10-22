@@ -1,0 +1,156 @@
+<div ng-app="sentiBankApp">
+	<div ng-controller="sentiBankAppCtrl">
+
+		<!-- Navbr -->
+		<nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+            	<div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                    <a href="" class="navbar-brand">Aperture</a>
+            	</div>
+
+				<div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a target="_ext" 
+                                href="http://www.ee.columbia.edu/ln/dvmm/vso/download/sentibank.html">
+                                <i class="glyphicon glyphicon-info-sign"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form " role="form">
+                        <div class="form-group" >
+                        <div class="input-group" >
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default" ng-click="submit(imageUrl)" 
+                                ng-disabled="isRunning">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                            <input	id="searchbar" type="url" class="form-control" placeholder="Enter image URL" ng-model="imageUrl" ng-disabled="isRunning">
+                        </div>
+                        </div>
+                    </form>
+				</div>
+            </div>
+		</nav>
+		
+		<!-- subnav -->
+		<div id="alertbar">
+			<!-- Alert -->
+            <alert class="semi" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		</div>
+		
+		<!-- Body -->
+		<div id="main" class="container">
+		<!-- Image list and control and display-->
+        <div class="row">
+            <div class="col-xs-12 col-lg-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><i class="glyphicon glyphicon-th-list"></i> Images</h4>
+                  	</div>
+                    <div class="panel-body">
+                      <div class="gridStyle " ng-grid="gridOptions"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-6" >
+                <div class="well">
+                    <h4><i class="glyphicon glyphicon-wrench"></i> Controls</h4>
+                    	<div class="row">
+                    		<div class="col-lg-6">
+                                <!-- toggle image blur -->
+                                <div class="btn-group">
+                                    <label class="btn btn-default" ng-model="enableBlur" btn-radio="true">Blur On</label>
+                                    <label class="btn btn-default" ng-model="enableBlur" btn-radio="false">Off</label>
+                                </div>
+                    		</div>
+                    		<div class="col-lg-6">
+                                <!-- export result -->
+                                <div ng-hide="selectedImage.id < 0" >
+                                    <button type="button" class="btn btn-default" ng-csv="selectedImage.dataArray" 
+                                    filename="{{selectedImage.fileName + '.json'}}" >Export Results</button>
+                                </div>
+                    		</div>
+                    	</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-6" ng-hide="selectedImage.id < 0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><i class="glyphicon glyphicon-picture"></i> Image {{selectedImage.id}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-center">
+                          <img class="imageSize img-rounded" ng-src="{{selectedImage.url || ''}}" blur="{{enableBlur}}" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!-- Results -->
+        <div class="row" ng-hide="selectedImage.id < 0" >
+        	<!-- Attributes -->
+            <div class="col-xs-12 col-lg-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><i class="glyphicon glyphicon-list"></i> Attributes of Image {{selectedImage.id}}
+                            <button type="button" class="btn btn-link pull-right" ng-csv="attrs" 
+                            filename="{{selectedImage.fileName + '_attrs.csv'}}" >
+                                <i class="glyphicon glyphicon-download"></i>
+                            </button>
+                      </h4>
+                  </div>
+                  <div class="panel-body">
+                      <div class="gridStyle" ng-grid="attrGridOptions"></div>
+                  </div>
+                </div>
+            </div>
+        	<!-- concpets -->
+            <div class="col-xs-12 col-lg-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><i class="glyphicon glyphicon-list"></i> Bi-concepts of Image {{selectedImage.id}}
+                            <button type="button" class="btn btn-link pull-right" ng-csv="concepts" 
+                            filename="{{selectedImage.fileName + '_concepts.csv'}}" >
+                                <i class="glyphicon glyphicon-download"></i>
+                            </button>
+                      </h4>
+                  </div>
+                  <div class="panel-body">
+                      <div class="gridStyle" ng-grid="conceptGridOptions"></div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-lg-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><i class="glyphicon glyphicon-list"></i> Features of Image {{selectedImage.id}}
+                            <button type="button" class="btn btn-link pull-right" ng-csv="features" 
+                            filename="{{selectedImage.fileName + '_features.csv'}}" >
+                                <i class="glyphicon glyphicon-download"></i>
+                            </button>
+                      </h4>
+                    </div>
+                    <div class="panel-body">
+                      <div class="gridStyle" ng-grid="featureGridOptions"></div>
+                    </div>
+                 </div>
+            </div>
+         </div>
+		</div>
+
+		<!-- footer -->
+		<hr></hr>
+		<div class="col-xs-12 col-lg-12 text-center">
+			<p>
+				<a target="_ext" href="http://www.autonlab.org">Copyright © 2014 Carnegie Mellon University, Auton Lab. All Rights Reserved.</a>
+			</p>
+		</div>
+	</div>
+</div>

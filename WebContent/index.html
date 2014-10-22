@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="sentiBankApp">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- load 3rd party modules -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- load angular and dependent libraries -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.2.5/ng-csv.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+
+<script src="js/components/pixelate/pixelate.js"></script>
+
+<!-- load the app -->
+<script src="app.js"></script>
+
+<!-- load modules -->
+<link rel="stylesheet" href="js/sentibank/senti-bank-app.css">
+<script src="js/components/blurimg/blurimg-directive.js"></script>
+<script src="js/sentibank/senti-bank-app.js"></script>
+
+</head>
+
+<body >
+<div ng-view></div>
+</body>
+
+</html>

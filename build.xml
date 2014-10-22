@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="war" name="aperture">
+    <target name="init">
+        <mkdir dir="dist"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="dist"/>
+    </target>
+	
+	<target name="war" depends="clean,init">
+		<war destfile="dist/aperture.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent"></fileset>
+		</war>
+	</target>
+
+</project>
