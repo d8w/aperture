@@ -1,6 +1,6 @@
 # Aperture
 Aperture is a webapp that makes it easy to use the [SentiBank](http://www.ee.columbia.edu/ln/dvmm/vso/download/sentibank.html) API.
-[See it in action](http://gs6245.autonlab.org/aperture)
+[See it in action](http://lock.autonlab.org:8080/aperture)
 
 # Build
 ```shell
